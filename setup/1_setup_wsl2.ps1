@@ -39,6 +39,32 @@ if (-not $existing) {
     Write-Host "Firewall rule already exists - OK" -ForegroundColor Green
 }
 
+# --- Hyper-V firewall rule: allow inbound 8012 to WSL VM (mirrored mode) ---
+# Without this, devices on the LAN (like Quest 2) cannot reach WSL2 services
+# even if the regular Windows firewall allows the port.
+$wslVmId = "{40E0AC32-46A5-438A-A0B2-2B479E8F2E90}"
+$hvRuleName = "WSL-Port-8012-Inbound"
+try {
+    $hvExisting = Get-NetFirewallHyperVRule -Name $hvRuleName -ErrorAction SilentlyContinue
+    if (-not $hvExisting) {
+        Write-Host "Adding Hyper-V firewall rule for WSL port 8012 ..." -ForegroundColor Yellow
+        New-NetFirewallHyperVRule `
+            -Name $hvRuleName `
+            -DisplayName "WSL Port 8012 Inbound (Quest XR)" `
+            -VMCreatorId $wslVmId `
+            -Direction Inbound `
+            -Protocol TCP `
+            -LocalPorts 8012 `
+            -Action Allow | Out-Null
+        Write-Host "Hyper-V firewall rule added - OK" -ForegroundColor Green
+    } else {
+        Write-Host "Hyper-V firewall rule already exists - OK" -ForegroundColor Green
+    }
+} catch {
+    Write-Host "Could not configure Hyper-V firewall rule: $_" -ForegroundColor Yellow
+    Write-Host "(This may not be needed if firewall=false in .wslconfig is honored)" -ForegroundColor Yellow
+}
+
 # --- Restart WSL to apply new .wslconfig ---
 Write-Host "Shutting down WSL to apply networking config ..." -ForegroundColor Yellow
 wsl --shutdown

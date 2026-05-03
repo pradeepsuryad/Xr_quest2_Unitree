@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 # ============================================================
 # Step 3: Clone all required repositories
 # Run from inside Ubuntu WSL2:

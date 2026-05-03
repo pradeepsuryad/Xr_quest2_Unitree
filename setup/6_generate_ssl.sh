@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 # ============================================================
 # Step 6: Generate self-signed SSL certificates
 # The Quest 2 browser requires HTTPS to access WebXR APIs.
@@ -61,7 +61,7 @@ CN = $PC_IP
 
 [v3_req]
 subjectAltName = @alt_names
-keyUsage = keyEncipherment, dataEncipherment
+keyUsage = digitalSignature, keyEncipherment, dataEncipherment
 extendedKeyUsage = serverAuth
 
 [alt_names]
@@ -97,6 +97,13 @@ server:
   ssl_key: "$SERVER_KEY"
 EOF
 echo -e "${GREEN}televuer config written to $TELEVUER_CFG${NC}"
+
+# ---- 5. Symlink certs into ~/.config/xr_teleoperate/ (where televuer.py looks) ----
+XR_CFG_DIR="$HOME/.config/xr_teleoperate"
+mkdir -p "$XR_CFG_DIR"
+ln -sfn "$SERVER_CERT" "$XR_CFG_DIR/cert.pem"
+ln -sfn "$SERVER_KEY"  "$XR_CFG_DIR/key.pem"
+echo -e "${GREEN}Symlinked cert.pem/key.pem into $XR_CFG_DIR${NC}"
 
 echo -e ""
 echo -e "${GREEN}=== Step 6 complete ===${NC}"

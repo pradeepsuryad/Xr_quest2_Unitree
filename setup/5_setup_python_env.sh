@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 # ============================================================
 # Step 5: Set up conda Python 3.10 environment and install
 #         all Python packages (televuer, xr_teleoperate, etc.)

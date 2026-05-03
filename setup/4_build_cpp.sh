@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 # ============================================================
 # Step 4: Build unitree_sdk2 and unitree_mujoco (C++ simulator)
 # Run from inside Ubuntu WSL2:

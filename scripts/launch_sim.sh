@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 # ============================================================
 # Launch: MuJoCo Simulator
 # Run from inside Ubuntu WSL2 (Terminal 1):
@@ -29,9 +29,10 @@ if [ ! -f "$CONFIG_FILE" ]; then
     exit 1
 fi
 
-# Patch robot name in config.yaml
+# Patch robot name and interface in config.yaml
 sed -i "s/^robot: .*/robot: \"$ROBOT\"/" "$CONFIG_FILE"
-echo -e "${GREEN}Set robot to '$ROBOT' in config.yaml${NC}"
+sed -i "s/^interface: .*/interface: \"eth0\"/" "$CONFIG_FILE"
+echo -e "${GREEN}Set robot='$ROBOT' interface='eth0' in config.yaml${NC}"
 
 # DDS domain (must match the teleoperation node)
 export UNITREE_SDK_DOMAIN_ID="${UNITREE_SDK_DOMAIN_ID:-0}"

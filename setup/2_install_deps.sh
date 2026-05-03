@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 # ============================================================
 # Step 2: Install system dependencies inside WSL2 Ubuntu 22.04
 # Run from inside Ubuntu:
