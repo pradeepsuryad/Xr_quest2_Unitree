@@ -1,0 +1,9 @@
+# Bash scripts must always use LF (they run inside WSL2/Linux)
+*.sh    text eol=lf
+# PowerShell scripts use CRLF on Windows
+*.ps1   text eol=crlf
+# Docs use whatever the platform prefers
+*.md    text
+# .gitattributes and .gitignore are text
+.gitattributes text
+.gitignore     text

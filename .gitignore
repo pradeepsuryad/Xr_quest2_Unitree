@@ -1,0 +1,33 @@
+# SSL certificates and keys — never commit these
+*.key
+*.csr
+*.crt
+*.pem
+*.p12
+*.pfx
+
+# Conda / Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+.venv
+env/
+
+# Build artifacts
+build/
+dist/
+*.o
+*.a
+*.so
+
+# MuJoCo cache
+*.pkl
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# WSL temp
+*.log
