@@ -15,8 +15,18 @@ source "$CONDA_DIR/etc/profile.d/conda.sh"
 conda activate "$ENV_NAME"
 
 export LD_LIBRARY_PATH="$HOME/.mujoco/mujoco-3.3.6/lib:$LD_LIBRARY_PATH"
-export MUJOCO_GL=egl   # offscreen render without an X display
+export MUJOCO_GL=glx
+export DISPLAY="${DISPLAY:-:0}"
 
 cd "$WORKSPACE/xr_teleoperate/teleop"
 echo -e "${YELLOW}Publishing head_camera frames on tcp://*:55555${NC}"
-python sim_image_server.py
+python sim_image_server.py \
+    --model "$WORKSPACE/unitree_mujoco/unitree_robots/g1/scene.xml" \
+    --interface "$(ip route get 1.1.1.1 2>/dev/null | grep -oP 'dev \K\S+')" \
+    --domain 0 \
+    --width 640 \
+    --height 360 \
+    --fps 30 \
+    --quality 80 \
+    --pip-camera third_person \
+    --pip-scale 0.28

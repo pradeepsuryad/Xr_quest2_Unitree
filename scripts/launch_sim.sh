@@ -29,10 +29,14 @@ if [ ! -f "$CONFIG_FILE" ]; then
     exit 1
 fi
 
+# Detect active network interface (the one used for default routing)
+IFACE=$(ip route get 1.1.1.1 2>/dev/null | grep -oP 'dev \K\S+')
+IFACE="${IFACE:-eth0}"
+
 # Patch robot name and interface in config.yaml
 sed -i "s/^robot: .*/robot: \"$ROBOT\"/" "$CONFIG_FILE"
-sed -i "s/^interface: .*/interface: \"eth0\"/" "$CONFIG_FILE"
-echo -e "${GREEN}Set robot='$ROBOT' interface='eth0' in config.yaml${NC}"
+sed -i "s/^interface: .*/interface: \"$IFACE\"/" "$CONFIG_FILE"
+echo -e "${GREEN}Set robot='$ROBOT' interface='$IFACE' in config.yaml${NC}"
 
 # DDS domain (must match the teleoperation node)
 export UNITREE_SDK_DOMAIN_ID="${UNITREE_SDK_DOMAIN_ID:-0}"
@@ -40,6 +44,11 @@ echo -e "${YELLOW}DDS DOMAIN_ID: $UNITREE_SDK_DOMAIN_ID${NC}"
 
 # MuJoCo library path
 export LD_LIBRARY_PATH="$HOME/.mujoco/mujoco-3.3.6/lib:$LD_LIBRARY_PATH"
+
+# Display (WSLg / X11)
+export DISPLAY="${DISPLAY:-:0}"
+export MUJOCO_GL="${MUJOCO_GL:-glx}"
+export LIBGL_ALWAYS_SOFTWARE="${LIBGL_ALWAYS_SOFTWARE:-0}"
 
 echo -e "${YELLOW}Starting simulator... (Ctrl+C to stop)${NC}"
 cd "$SIM_DIR"
