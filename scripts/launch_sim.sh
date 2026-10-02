@@ -2,7 +2,7 @@
 # ============================================================
 # Launch: MuJoCo Simulator
 # Run from inside Ubuntu WSL2 (Terminal 1):
-#   bash /mnt/c/Users/dprad/Downloads/Xr_quest2_Unitree/launch_sim.sh [robot]
+#   bash /mnt/c/Users/<YOUR_USERNAME>/Downloads/Xr_quest2_Unitree/scripts/launch_sim.sh [robot]
 #
 # Arguments:
 #   robot   Robot model: g1 (default), h1, go2, b2, b2w, go2w

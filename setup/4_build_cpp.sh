@@ -2,11 +2,12 @@
 # ============================================================
 # Step 4: Build unitree_sdk2 and unitree_mujoco (C++ simulator)
 # Run from inside Ubuntu WSL2:
-#   bash /mnt/c/Users/dprad/Downloads/Xr_quest2_Unitree/setup/4_build_cpp.sh
+#   bash /mnt/c/Users/<YOUR_USERNAME>/Downloads/Xr_quest2_Unitree/setup/4_build_cpp.sh
 # ============================================================
 
 set -e
 CYAN='\033[0;36m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; RED='\033[0;31m'; NC='\033[0m'
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 WORKSPACE="$HOME/unitree_teleop"
 JOBS=$(nproc)
@@ -74,5 +75,5 @@ echo -e "${GREEN}=== Step 4 complete ===${NC}"
 echo -e ""
 echo -e "Next: set up the Python environment"
 echo -e ""
-echo -e "  ${CYAN}bash /mnt/c/Users/dprad/Downloads/Xr_quest2_Unitree/setup/5_setup_python_env.sh${NC}"
+echo -e "  ${CYAN}bash $REPO_DIR/setup/5_setup_python_env.sh${NC}"
 

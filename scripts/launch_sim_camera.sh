@@ -1,7 +1,7 @@
 #!/bin/bash
 # Launch: simulation image server (MuJoCo head camera -> ZMQ -> teleop -> Quest 2)
 # Run from inside Ubuntu WSL2 (Terminal 3, AFTER launch_sim.sh and launch_teleop.sh):
-#   bash /mnt/c/Users/dprad/Downloads/Xr_quest2_Unitree/scripts/launch_sim_camera.sh
+#   bash /mnt/c/Users/<YOUR_USERNAME>/Downloads/Xr_quest2_Unitree/scripts/launch_sim_camera.sh
 
 CYAN='\033[0;36m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; NC='\033[0m'
 

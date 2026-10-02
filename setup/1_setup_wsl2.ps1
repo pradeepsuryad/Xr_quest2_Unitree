@@ -76,5 +76,6 @@ Write-Host "Next: open Ubuntu from the Start menu (or Windows Terminal)."
 Write-Host "If this is your first time, Ubuntu will ask you to create a username and password."
 Write-Host ""
 Write-Host "Then inside Ubuntu run:"
-Write-Host "  bash /mnt/c/Users/dprad/Downloads/Xr_quest2_Unitree/setup/2_install_deps.sh" -ForegroundColor Cyan
+$wslSetup = "/mnt/" + $PSScriptRoot.Substring(0,1).ToLower() + ($PSScriptRoot.Substring(2) -replace '\\','/')
+Write-Host "  bash $wslSetup/2_install_deps.sh" -ForegroundColor Cyan
 

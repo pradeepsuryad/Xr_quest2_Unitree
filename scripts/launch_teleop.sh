@@ -1,7 +1,7 @@
 #!/bin/bash
 # Launch: XR Teleoperation Node
 # Run from inside Ubuntu WSL2 (Terminal 2, AFTER launch_sim.sh):
-#   bash /mnt/c/Users/dprad/Downloads/Xr_quest2_Unitree/scripts/launch_teleop.sh [options]
+#   bash /mnt/c/Users/<YOUR_USERNAME>/Downloads/Xr_quest2_Unitree/scripts/launch_teleop.sh [options]
 #
 # Options:
 #   --robot   g1 (default), h1

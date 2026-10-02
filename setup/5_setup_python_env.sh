@@ -3,11 +3,12 @@
 # Step 5: Set up conda Python 3.10 environment and install
 #         all Python packages (televuer, xr_teleoperate, etc.)
 # Run from inside Ubuntu WSL2:
-#   bash /mnt/c/Users/dprad/Downloads/Xr_quest2_Unitree/setup/5_setup_python_env.sh
+#   bash /mnt/c/Users/<YOUR_USERNAME>/Downloads/Xr_quest2_Unitree/setup/5_setup_python_env.sh
 # ============================================================
 
 set -e
 CYAN='\033[0;36m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; RED='\033[0;31m'; NC='\033[0m'
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 WORKSPACE="$HOME/unitree_teleop"
 CONDA_DIR="$HOME/miniconda3"
@@ -91,5 +92,5 @@ conda run -n "$ENV_NAME" pip list | grep -E "numpy|mujoco|pinocchio|unitree|tele
 echo -e ""
 echo -e "Next: generate SSL certificates for the Quest 2 connection"
 echo -e ""
-echo -e "  ${CYAN}bash /mnt/c/Users/dprad/Downloads/Xr_quest2_Unitree/setup/6_generate_ssl.sh${NC}"
+echo -e "  ${CYAN}bash $REPO_DIR/setup/6_generate_ssl.sh${NC}"
 

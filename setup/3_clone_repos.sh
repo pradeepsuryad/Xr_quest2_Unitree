@@ -2,11 +2,12 @@
 # ============================================================
 # Step 3: Clone all required repositories
 # Run from inside Ubuntu WSL2:
-#   bash /mnt/c/Users/dprad/Downloads/Xr_quest2_Unitree/setup/3_clone_repos.sh
+#   bash /mnt/c/Users/<YOUR_USERNAME>/Downloads/Xr_quest2_Unitree/setup/3_clone_repos.sh
 # ============================================================
 
 set -e
 CYAN='\033[0;36m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; RED='\033[0;31m'; NC='\033[0m'
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 WORKSPACE="$HOME/unitree_teleop"
 
@@ -53,5 +54,5 @@ ls -1 "$WORKSPACE"
 echo -e ""
 echo -e "Next: build the C++ components"
 echo -e ""
-echo -e "  ${CYAN}bash /mnt/c/Users/dprad/Downloads/Xr_quest2_Unitree/setup/4_build_cpp.sh${NC}"
+echo -e "  ${CYAN}bash $REPO_DIR/setup/4_build_cpp.sh${NC}"
 

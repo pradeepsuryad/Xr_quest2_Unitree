@@ -2,11 +2,12 @@
 # ============================================================
 # Step 2: Install system dependencies inside WSL2 Ubuntu 22.04
 # Run from inside Ubuntu:
-#   bash /mnt/c/Users/dprad/Downloads/Xr_quest2_Unitree/setup/2_install_deps.sh
+#   bash /mnt/c/Users/<YOUR_USERNAME>/Downloads/Xr_quest2_Unitree/setup/2_install_deps.sh
 # ============================================================
 
 set -e
 CYAN='\033[0;36m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; RED='\033[0;31m'; NC='\033[0m'
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 echo -e "${CYAN}=== Step 2: Installing system dependencies ===${NC}"
 
@@ -88,5 +89,5 @@ echo -e ""
 echo -e "${GREEN}=== Step 2 complete ===${NC}"
 echo -e "Next: run the clone script"
 echo -e ""
-echo -e "  ${CYAN}bash /mnt/c/Users/dprad/Downloads/Xr_quest2_Unitree/setup/3_clone_repos.sh${NC}"
+echo -e "  ${CYAN}bash $REPO_DIR/setup/3_clone_repos.sh${NC}"
 

@@ -5,11 +5,12 @@
 # This script creates a local CA + server cert signed by it,
 # then installs the CA into Ubuntu's trust store.
 # Run from inside Ubuntu WSL2:
-#   bash /mnt/c/Users/dprad/Downloads/Xr_quest2_Unitree/setup/6_generate_ssl.sh
+#   bash /mnt/c/Users/<YOUR_USERNAME>/Downloads/Xr_quest2_Unitree/setup/6_generate_ssl.sh
 # ============================================================
 
 set -e
 CYAN='\033[0;36m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; RED='\033[0;31m'; NC='\033[0m'
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 CERT_DIR="$HOME/.config/televuer/certs"
 CA_KEY="$CERT_DIR/ca.key"
@@ -111,10 +112,10 @@ echo -e ""
 echo -e "${CYAN}IMPORTANT â€” Install the CA cert on your Quest 2:${NC}"
 echo -e ""
 echo -e "  1. Copy the CA cert to a location reachable from your Windows browser:"
-echo -e "     ${YELLOW}cp $CA_CERT /mnt/c/Users/dprad/Downloads/Xr_quest2_Unitree/unitree_xr_ca.crt${NC}"
+echo -e "     ${YELLOW}cp $CA_CERT $REPO_DIR/unitree_xr_ca.crt${NC}"
 echo -e ""
 echo -e "  2. On the Quest 2, open the Meta Quest Browser and go to:"
-echo -e "     ${CYAN}http://$PC_IP:8080/unitree_xr_ca.crt${NC}  (you can serve it with: python3 -m http.server 8080 -d /mnt/c/Users/dprad/Downloads/Xr_quest2_Unitree/)"
+echo -e "     ${CYAN}http://$PC_IP:8080/unitree_xr_ca.crt${NC}  (you can serve it with: python3 -m http.server 8080 -d $REPO_DIR/)"
 echo -e "     OR transfer via USB and install from Settings > Security > Install Certificates"
 echo -e ""
 echo -e "  3. Once the CA cert is trusted on the Quest 2, you will not see security warnings."
@@ -123,6 +124,6 @@ echo -e "Your PC IP for Quest 2 connection: ${CYAN}https://$PC_IP:8012${NC}"
 echo -e ""
 echo -e "Next: launch the simulator and teleoperation node"
 echo -e ""
-echo -e "  ${CYAN}bash /mnt/c/Users/dprad/Downloads/Xr_quest2_Unitree/scripts/launch_sim.sh${NC}"
-echo -e "  ${CYAN}bash /mnt/c/Users/dprad/Downloads/Xr_quest2_Unitree/scripts/launch_teleop.sh${NC}"
+echo -e "  ${CYAN}bash $REPO_DIR/scripts/launch_sim.sh${NC}"
+echo -e "  ${CYAN}bash $REPO_DIR/scripts/launch_teleop.sh${NC}"
 
