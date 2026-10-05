@@ -4,11 +4,10 @@
 #   bash /mnt/c/Users/<YOUR_USERNAME>/Downloads/Xr_quest2_Unitree/scripts/launch_teleop.sh [options]
 #
 # Options:
-#   --robot   g1 (default), h1
 #   --arm     G1_29 (default), G1_23, H1_2, H1
 #   --ee      none (default), dex1, dex3
 #   --mode    immersive (default), pass-through, ego
-#   --input   controller (default - more reliable on Quest 2), hand
+#   --input   hand (default), controller (try this if hand tracking is unreliable)
 
 CYAN='\033[0;36m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; RED='\033[0;31m'; NC='\033[0m'
 
@@ -16,17 +15,15 @@ WORKSPACE="$HOME/unitree_teleop"
 CONDA_DIR="$HOME/miniconda3"
 ENV_NAME="unitree_xr"
 
-ROBOT="g1"
 ARM="G1_29"
 EE="none"
 MODE="immersive"
-INPUT="controller"
+INPUT="hand"
 RECORD=""
 TASK_NAME="pick_cube"
 
 while [[ $# -gt 0 ]]; do
     case $1 in
-        --robot)     ROBOT="$2";     shift 2 ;;
         --arm)       ARM="$2";       shift 2 ;;
         --ee)        EE="$2";        shift 2 ;;
         --mode)      MODE="$2";      shift 2 ;;
@@ -38,7 +35,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 echo -e "${CYAN}=== Launching XR Teleoperation Node ===${NC}"
-echo -e "  robot=${YELLOW}$ROBOT${NC}  arm=${YELLOW}$ARM${NC}  ee=${YELLOW}$EE${NC}  mode=${YELLOW}$MODE${NC}  input=${YELLOW}$INPUT${NC}  record=${YELLOW}${RECORD:-(off)}${NC}"
+echo -e "  arm=${YELLOW}$ARM${NC}  ee=${YELLOW}$EE${NC}  mode=${YELLOW}$MODE${NC}  input=${YELLOW}$INPUT${NC}  record=${YELLOW}${RECORD:-(off)}${NC}"
 
 if [ ! -d "$WORKSPACE/xr_teleoperate" ]; then
     echo -e "${RED}ERROR: xr_teleoperate not found. Run step 3 first.${NC}"

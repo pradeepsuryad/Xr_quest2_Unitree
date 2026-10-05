@@ -131,14 +131,14 @@ bash scripts/launch_sim.sh go2    # Go2 quadruped
 
 # launch_teleop.sh
 bash scripts/launch_teleop.sh                                          # defaults
-bash scripts/launch_teleop.sh --robot h1 --arm H1_2 --ee none --mode ego
+bash scripts/launch_teleop.sh --arm H1_2 --ee none --mode ego
 ```
 
 | Argument | Options | Default |
 |----------|---------|---------|
-| `--robot` | `g1`, `h1` | `g1` |
 | `--arm` | `G1_29`, `G1_23`, `H1_2`, `H1` | `G1_29` |
-| `--ee` | `dex3`, `dex1`, `none` | `dex3` |
+| `--ee` | `dex3`, `dex1`, `none` | `none` |
+| `--input` | `hand`, `controller` | `hand` |
 | `--mode` | `immersive`, `pass-through`, `ego` | `immersive` |
 
 ---
@@ -148,7 +148,7 @@ bash scripts/launch_teleop.sh --robot h1 --arm H1_2 --ee none --mode ego
 | Input | Action |
 |-------|--------|
 | Move hands in space | Robot arms follow |
-| Pinch (index + thumb) | Close dexterous hand |
+| Pinch (index + thumb) | Close the hand (only with an end effector selected via `--ee`) |
 | Keyboard `r` | Start tracking |
 | Keyboard `q` | Stop and exit |
 | Keyboard `s` | Toggle data recording |
