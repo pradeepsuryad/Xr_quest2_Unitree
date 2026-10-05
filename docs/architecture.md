@@ -54,7 +54,8 @@ Output smoothed with a 4-frame weighted moving average [0.4, 0.3, 0.2, 0.1].
 | Parameter | Value | Location |
 |-----------|-------|----------|
 | Control frequency | 30 Hz | `--frequency` arg |
-| DDS domain (sim) | 1 | `ChannelFactoryInitialize(1,...)` |
+| DDS domain (this MuJoCo setup) | 0 | `domain_id: 0` in unitree_mujoco's `config.yaml`; the teleop node runs without `--sim` |
+| DDS domain (upstream `--sim`, Isaac) | 1 | `ChannelFactoryInitialize(1,...)` |
 | DDS domain (real) | 0 | `ChannelFactoryInitialize(0,...)` |
 | HTTPS port | 8012 | televuer config |
 | MuJoCo version | 3.3.6 | `4_build_cpp.sh` |

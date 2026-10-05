@@ -1,6 +1,6 @@
 # Unitree XR Teleoperate — Windows WSL2 Setup
 
-Control a **Unitree G1 / H1 humanoid robot** in a MuJoCo physics simulation using a **Meta Quest 2** VR headset. Move your hands — the robot mirrors you in real time.
+Control a **Unitree G1 / H1 humanoid robot** in a MuJoCo physics simulation using a **Meta Quest 2** VR headset. Move your hands and the robot's arms follow.
 
 Built on top of [unitree_mujoco](https://github.com/unitreerobotics/unitree_mujoco), [xr_teleoperate](https://github.com/unitreerobotics/xr_teleoperate), [televuer](https://github.com/unitreerobotics/televuer), and [unitree_sdk2](https://github.com/unitreerobotics/unitree_sdk2).
 
@@ -19,15 +19,15 @@ televuer  ──►  xr_teleoperate (IK solver)  ──►  unitree_mujoco (phys
 1. **televuer** — serves a WebXR page to the Quest 2 browser, streams 6DoF hand poses back over WebRTC
 2. **xr_teleoperate** — solves inverse kinematics (CasADi + IPOPT) at 30 Hz to convert hand poses into 14 arm joint angles
 3. **unitree_sdk2** — DDS communication layer between control node and simulator
-4. **unitree_mujoco** — C++ real-time physics simulation of the G1 robot
+4. **unitree_mujoco** — C++ physics simulation of the G1 robot
 
 ---
 
 ## Requirements
 
-- Windows 11 (build 22000+)
+- Windows 11 22H2 or later ([required for WSL mirrored networking](https://learn.microsoft.com/en-us/windows/wsl/networking#mirrored-mode-networking))
 - Meta Quest 2 on the same local WiFi as your PC
-- ~15 GB free disk space
+- About 7 GB of disk for the repos, Miniconda and the Python environment, plus the Ubuntu packages from step 2 ([measured](docs/disk_usage.md))
 
 ---
 
@@ -62,7 +62,7 @@ bash /mnt/c/Users/<YOUR_USERNAME>/Downloads/Xr_quest2_Unitree/setup/3_clone_repo
 
 Clones unitree_sdk2, unitree_mujoco, televuer, and xr_teleoperate into `~/unitree_teleop/`.
 
-### Step 4 — Build C++ simulator (Ubuntu, ~10 min)
+### Step 4 — Build C++ simulator (Ubuntu)
 
 ```bash
 bash /mnt/c/Users/<YOUR_USERNAME>/Downloads/Xr_quest2_Unitree/setup/4_build_cpp.sh
@@ -70,7 +70,7 @@ bash /mnt/c/Users/<YOUR_USERNAME>/Downloads/Xr_quest2_Unitree/setup/4_build_cpp.
 
 Downloads MuJoCo 3.3.6, builds unitree_sdk2 and the unitree_mujoco C++ simulator.
 
-### Step 5 — Set up Python environment (Ubuntu, ~5 min)
+### Step 5 — Set up Python environment (Ubuntu)
 
 ```bash
 source ~/miniconda3/etc/profile.d/conda.sh
